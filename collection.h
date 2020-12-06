@@ -13,6 +13,7 @@ public:
     int add_elem(luggage &ob);
     int get_size();
     int clear();
+    int remove(int num);
 
     ~collection();
     luggage** get_iterator() const {return this->field;}

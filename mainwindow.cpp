@@ -32,7 +32,6 @@ void MainWindow::on_add_clicked()
         std:: string dest = ui->dest_edit->text().toStdString();
         int weight  = atoi(ui->weight_edit->text().toStdString().c_str());
         auto la = new luggage(owner, dest, weight);
-        cout << "test2: " << la->get_owner() << endl;
         if(weight <= 0)
             QMessageBox::critical(this, "Add", "Wrong data. Please, try again");
         else
@@ -64,7 +63,7 @@ void MainWindow::on_add_clicked()
             QTableWidgetItem *priceItem = new QTableWidgetItem();
             priceItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("price")));
             ui->tableWidget->setItem(i, 4, priceItem);
-        }
+       }
     }
     else
     {
@@ -136,4 +135,74 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
         ui->volume_edit->setEnabled(true);
         currClassIsItem = false;
     }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    int number = atoi(ui->test->text().toStdString().c_str());
+    this->cargo_collection.remove(number);
+
+
+    ui->tableWidget->setRowCount(0);
+    for (int i = 0; i < cargo_collection.get_size(); i++)
+    {
+        ui->tableWidget->insertRow(i);
+
+        QTableWidgetItem *ownerItem = new QTableWidgetItem();
+        ownerItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("owner")));
+        ui->tableWidget->setItem(i, 0, ownerItem);
+
+        QTableWidgetItem *destItem = new QTableWidgetItem();
+        destItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("dest")));
+        ui->tableWidget->setItem(i, 1, destItem);
+
+        QTableWidgetItem *weightItem = new QTableWidgetItem();
+        weightItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("weight")));
+        ui->tableWidget->setItem(i, 2, weightItem);
+
+        QTableWidgetItem *volumeItem = new QTableWidgetItem();
+        volumeItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("volume")));
+        ui->tableWidget->setItem(i, 3, volumeItem);
+
+        QTableWidgetItem *priceItem = new QTableWidgetItem();
+        priceItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("price")));
+        ui->tableWidget->setItem(i, 4, priceItem);
+    }
+}
+
+
+
+void MainWindow::on_clear_clicked()
+{
+    if (this->cargo_collection.get_iterator() && this->cargo_collection.get_size())
+    {
+        this->cargo_collection.clear();
+        ui->tableWidget->setRowCount(0);
+        for (int i = 0; i < cargo_collection.get_size(); i++)
+        {
+            ui->tableWidget->insertRow(i);
+
+            QTableWidgetItem *ownerItem = new QTableWidgetItem();
+            ownerItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("owner")));
+            ui->tableWidget->setItem(i, 0, ownerItem);
+
+            QTableWidgetItem *destItem = new QTableWidgetItem();
+            destItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("dest")));
+            ui->tableWidget->setItem(i, 1, destItem);
+
+            QTableWidgetItem *weightItem = new QTableWidgetItem();
+            weightItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("weight")));
+            ui->tableWidget->setItem(i, 2, weightItem);
+
+            QTableWidgetItem *volumeItem = new QTableWidgetItem();
+            volumeItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("volume")));
+            ui->tableWidget->setItem(i, 3, volumeItem);
+
+            QTableWidgetItem *priceItem = new QTableWidgetItem();
+            priceItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("price")));
+            ui->tableWidget->setItem(i, 4, priceItem);
+        }
+    }
+    else
+        QMessageBox::critical(this,"Clear", "There is no data to clean");
 }
