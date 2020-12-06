@@ -22,14 +22,19 @@ private slots:
 
     void on_add_clicked();
 
-    void on_pushButton_clicked();
-
     void on_clear_clicked();
+
+    void on_tableWidget_cellClicked(int row);
+
+    void on_delButton_clicked();
+
+    void on_setButton_clicked();
 
 private:
     collection cargo_collection;
     Ui::MainWindow *ui;
 
+    int selectedRowIndex;
     bool currClassIsItem;
 };
 #endif // MAINWINDOW_H
