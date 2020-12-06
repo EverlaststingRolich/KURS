@@ -19,6 +19,8 @@ public:
     int get_weight() const;
     int get_price() const;
 
+    virtual string get_data(const string& type) const;
+
     void set_owner(const string& value);
     void set_dest(const string& value);
     void set_weight(const int& value);

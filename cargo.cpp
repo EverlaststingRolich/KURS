@@ -44,3 +44,40 @@ void cargo::set_volume(const int &value)
     else
         this->volume = 1;
 }
+
+
+string cargo::get_data(const string &type) const
+{
+    if (type == "owner")
+        return get_owner();
+
+    if (type == "dest")
+        return get_dest();
+
+    if (type == "weight")
+    {
+        int a = get_weight();
+        std::string weight = std::to_string(a);
+        return weight;
+    }
+
+    if (type == "volume")
+    {
+        int c = get_volume();
+        std::string volume = std::to_string(c);
+        return volume;
+    }
+
+    if (type == "price")
+    {
+        int b = get_price();
+        std::string price = std::to_string(b);
+        return price;
+    }
+    if (type == "old")
+    {
+        return "-";
+    }
+
+    return "cargo_error";
+}

@@ -14,6 +14,8 @@ public:
     int get_volume() const;
     void set_volume(const int& value);
 
+    string get_data(const string &type) const override;
+
 private:
     int volume;
 

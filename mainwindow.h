@@ -17,10 +17,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_add_clicked();
 
 private:
     collection cargo_collection;
     Ui::MainWindow *ui;
+
+    bool currClassIsItem;
 };
 #endif // MAINWINDOW_H

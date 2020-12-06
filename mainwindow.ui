@@ -14,43 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>121</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLineEdit" name="owner"/>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="dest"/>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="weight"/>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="volume"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>301</width>
+      <x>210</x>
+      <y>30</y>
+      <width>531</width>
       <height>221</height>
      </rect>
     </property>
@@ -66,9 +35,64 @@
     </column>
     <column>
      <property name="text">
+      <string>Weight</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Volume</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Price</string>
      </property>
     </column>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>160</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QComboBox" name="comboBox">
+       <item>
+        <property name="text">
+         <string>Default luggage</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Cargo luggage</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="owner_edit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dest_edit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="weight_edit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="volume_edit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add">
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

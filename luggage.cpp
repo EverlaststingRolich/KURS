@@ -84,3 +84,29 @@ void luggage::set_price(const int& value)
 {
     this->price = value;
 }
+
+string luggage::get_data(const string &type) const
+{
+    if (type == "owner")
+        return get_owner();
+
+    if (type == "dest")
+        return get_dest();
+    if (type == "weight")
+    {
+        int a = get_weight();
+        std::string weight = std::to_string(a);
+        return weight;
+    }
+    if (type == "price")
+    {
+        int b = get_price();
+        std::string price = std::to_string(b);
+        return price;
+    }
+    if (type == "volume")
+    {
+        return "-";
+    }
+    return "error";
+}
