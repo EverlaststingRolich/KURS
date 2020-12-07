@@ -18,6 +18,9 @@ public:
     ~collection();
     luggage** get_iterator() const {return this->field;}
 
+    int from_file(const string &name);
+    int to_file(const string &name);
+
 
 private:
     luggage **field{nullptr};

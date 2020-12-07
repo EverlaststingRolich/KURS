@@ -1,4 +1,5 @@
 #include "collection.h"
+#include "cargo.h"
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -124,4 +125,53 @@ collection::~collection()
     this->size = 0;
     delete [] this->field;
     this->field = nullptr;
+}
+
+int collection::to_file(const string &fname)
+{
+    ofstream fout(fname);
+    for(int i = 0;i < this->size;i++)
+    {
+        fout << "#" << i+1 << endl;
+        fout << this->field[i]->get_data("owner")<< endl;
+        fout << this->field[i]->get_data("dest") << endl;
+        fout << this->field[i]->get_data("weight") << endl;
+        fout << this->field[i]->get_data("volume") << endl;
+        fout << this->field[i]->get_data("price") << endl;
+    }
+    fout.close();
+    return 1;
+}
+
+int collection::from_file(const string &fname)
+{
+    string owner;
+    string dest;
+    int weight;
+    int volume;
+
+    ifstream file(fname);
+    if(this->field)
+    {
+        delete [] this->field;
+        this->field = nullptr;
+        this->field = 0;
+    }
+
+    if (file.is_open())
+    {
+        while(!file.eof())
+        {
+            file >> owner;
+            file >> dest;
+            file >> weight;
+            file >> volume;
+
+            auto ca = new cargo(owner, dest, weight, volume);
+            if (((ca->get_weight()) > 0) && ((ca->get_volume()) > 0))
+                this->add_elem(*ca);
+        }
+        file.close();
+    }
+    return 1;
 }

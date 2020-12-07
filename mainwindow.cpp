@@ -290,10 +290,46 @@ void MainWindow::on_setButton_clicked()
             }
         }
     }
+}
+//Запись в файл
+void MainWindow::on_pushButton_clicked()
+{
+    if(this->cargo_collection.get_iterator() && this->cargo_collection.get_size())
+    {
+        this->cargo_collection.to_file(ui->file_edit->text().toStdString());
+    }
+    else
+        QMessageBox::critical(this,"Output to file", "There is no list");
+}
 
+//чтение из файла
+void MainWindow::on_pushButton_2_clicked()
+{
+    this->cargo_collection.clear();
+    this->cargo_collection.from_file(ui->file_edit->text().toStdString());
+    ui->tableWidget->setRowCount(0);
+    for (int i = 0; i < cargo_collection.get_size(); i++)
+    {
+        ui->tableWidget->insertRow(i);
 
+        QTableWidgetItem *ownerItem = new QTableWidgetItem();
+        ownerItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("owner")));
+        ui->tableWidget->setItem(i, 0, ownerItem);
 
+        QTableWidgetItem *destItem = new QTableWidgetItem();
+        destItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("dest")));
+        ui->tableWidget->setItem(i, 1, destItem);
 
+        QTableWidgetItem *weightItem = new QTableWidgetItem();
+        weightItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("weight")));
+        ui->tableWidget->setItem(i, 2, weightItem);
 
+        QTableWidgetItem *volumeItem = new QTableWidgetItem();
+        volumeItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("volume")));
+        ui->tableWidget->setItem(i, 3, volumeItem);
 
+        QTableWidgetItem *priceItem = new QTableWidgetItem();
+        priceItem->setText(QString::fromStdString(cargo_collection.get_iterator()[i]->get_data("price")));
+        ui->tableWidget->setItem(i, 4, priceItem);
+    }
 }
